@@ -1,0 +1,22 @@
+//CSS basics, # to target a label, . to target a class. for fx styling, precede with "-fx-"
+
+//make all of the root node backgrounds purple
+.root{
+    -fx-background-color:"purple";
+}
+
+//change font size of all labels
+.label{
+    -fx-font-size: 20;
+    -fx-font-family: "Verdana";
+    -fx-text-fill: "white";
+
+    //alignment will not be visible unless the container is set to the width of the window first
+    //because all text containers from scenebuilder are the minimum size.
+    -fx-alignment: center;
+}
+
+//add specific styling to titleLabel items
+#titleLabel{
+    -fx-font-size: 60;
+}
