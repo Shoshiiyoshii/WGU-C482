@@ -1,13 +1,18 @@
-/*package thomasmccue.pa_c482;
+package thomasmccue.pa_c482;
 
 public class InHouse extends Part{
     private int machineId;
 
     public InHouse(int id, String name, double price, int stock, int min, int max, int machineId){
         super(id, name, price, stock, min, max);
+        this.machineId = machineId;
     }
 
-    public void setMachineId(int machineId){}
+    public void setMachineId(int machineId){
+        this.machineId = machineId;
+    }
 
-    public int getMachineId(){}
-}*/
+    public int getMachineId(){
+        return this.machineId;
+    }
+}
