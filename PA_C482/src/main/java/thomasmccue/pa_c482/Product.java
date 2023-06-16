@@ -62,6 +62,11 @@ public class Product {
     public void addAssociatedPart(Part part){
         associatedParts.add(part);
     }
+
+    /* "a logical or runtime error that you corrected in the code and how it was corrected"
+    ** One runtime error that I corrected here was that when deleteAssociatedPart was called it would cause a runtime error if the
+    ** associated parts list was empty. I fixed it by adding a check for that in my if/else statement, and throwing an exception in that case.
+    */
     public boolean deleteAssociatedPart(Part selectedAssociatedPart){
         if(associatedParts.size() > 0){
             boolean deleted = associatedParts.remove(selectedAssociatedPart);

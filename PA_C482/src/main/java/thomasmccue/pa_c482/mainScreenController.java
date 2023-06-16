@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -22,7 +23,11 @@ public class mainScreenController implements Initializable {
     private Button partAddButton, partModifyButton, partDeleteButton, productAddButton, productModifyButton, productDeleteButton, exitButton;
     @FXML
     private AnchorPane mainScreenPane;
+    @FXML
+    private TableView partTable;
     Stage stage;
+
+    @FXML
     public void clickPartAdd(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("addPart.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
@@ -31,7 +36,7 @@ public class mainScreenController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
+    @FXML
     public void clickProductAdd(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("addProduct.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
@@ -40,7 +45,7 @@ public class mainScreenController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
+    @FXML
     public void clickPartModify(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("modifyPart.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
@@ -49,6 +54,7 @@ public class mainScreenController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    @FXML
     public void clickProductModify(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("modifyProduct.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
@@ -58,9 +64,23 @@ public class mainScreenController implements Initializable {
         stage.show();
     }
 
+    @FXML
     public void exitClicked(ActionEvent event) throws IOException{
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    public void partSearch(ActionEvent event) throws IOException{
+        //grab what is typed into the partSearchBar and hold it in a String called "search"
+        String search = partSearchBar.getText();
+        //check if search input is an int or a string so that the proper method can be called.
+        //using regex to see in search input is digits
+        if(search.matches("\\d+")){
+            int idSearched = Integer.parseInt(search);
+            Part found = Inventory.lookupPart(idSearched);
+
+        }
     }
 
     // Implement the necessary methods
