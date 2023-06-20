@@ -17,10 +17,10 @@
             <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#f5f5f500" height="272.0" stroke="BLACK" strokeType="INSIDE" width="430.0" />
             <TableView fx:id="partTable" layoutX="10.0" layoutY="51.0" prefHeight="171.0" prefWidth="411.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="Part ID" />
-                <TableColumn prefWidth="97.0" text="Part Name" />
-                  <TableColumn prefWidth="106.0" text="Inventory Level" />
-                  <TableColumn prefWidth="132.0" text="Price/Cost per Unit" />
+                <TableColumn fx:id="partIdColumn" prefWidth="75.0" text="Part ID" />
+                <TableColumn fx:id="partNameColumn" prefWidth="97.0" text="Part Name" />
+                  <TableColumn fx:id="partInventoryLevelColumn" prefWidth="106.0" text="Inventory Level" />
+                  <TableColumn fx:id="partPriceColumn" prefWidth="132.0" text="Price/Cost per Unit" />
               </columns>
             </TableView>
             <TextField fx:id="partSearchBar" layoutX="261.0" layoutY="15.0" onKeyTyped="#partSearch" promptText="Search by Part ID or Name" />
@@ -45,12 +45,12 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <TableView layoutX="10.0" layoutY="51.0" prefHeight="171.0" prefWidth="411.0">
+            <TableView fx:id="productTable" layoutX="10.0" layoutY="51.0" prefHeight="171.0" prefWidth="411.0">
                <columns>
-                  <TableColumn prefWidth="75.0" text="Product ID" />
-                  <TableColumn prefWidth="105.0" text="Product Name" />
-                  <TableColumn prefWidth="101.0" text="Inventory Level" />
-                  <TableColumn prefWidth="129.0" text="Price/Cost per Unit" />
+                  <TableColumn fx:id="productIdColumn" prefWidth="75.0" text="Product ID" />
+                  <TableColumn fx:id="productNameColumn" prefWidth="105.0" text="Product Name" />
+                  <TableColumn fx:id="inventoryLevelColumn" prefWidth="101.0" text="Inventory Level" />
+                  <TableColumn fx:id="productPriceColumn" prefWidth="129.0" text="Price/Cost per Unit" />
                </columns>
             </TableView>
             <TextField fx:id="productSearchBar" layoutX="261.0" layoutY="17.0" onAction="#onProductSearch" promptText="Search by Part ID or Name" />

@@ -6,12 +6,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,7 +24,22 @@ public class mainScreenController implements Initializable {
     @FXML
     private AnchorPane mainScreenPane;
     @FXML
-    private TableView partTable;
+    private TableView<Part> partTable;
+    @FXML
+    private TableColumn<Part, Integer> partIdColumn, partInventoryLevelColumn;
+    @FXML
+    private TableColumn<Part, String> partNameColumn;
+    @FXML
+    private TableColumn<Part, Double> partPriceColumn;
+    @FXML
+    private TableView<Product> productTable;
+    @FXML
+    private TableColumn<Product, Integer> productIdColumn, productInventoryLevelColumn;
+    @FXML
+    private TableColumn<Product, String> productNameColumn;
+    @FXML
+    private TableColumn<Product, Double> productPriceColumn;
+
     Stage stage;
 
     @FXML
@@ -83,12 +98,21 @@ public class mainScreenController implements Initializable {
         }
     }
 
-    // Implement the necessary methods
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Initialization logic goes here
+    @FXML
+    public void onProductSearch(ActionEvent event) {
     }
 
-    // Other methods and fields
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        partTable.setItems(Inventory.getAllParts());
+        partIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        partInventoryLevelColumn.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        partNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        partPriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+
+       // productTable.setItems(Inventory.getAllProducts());
+    }
+
 }
 
