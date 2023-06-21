@@ -5,10 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -16,7 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class mainScreenController implements Initializable {
+public class MainScreenController implements Initializable {
     @FXML
     private TextField partSearchBar,productSearchBar;
     @FXML
@@ -51,18 +48,40 @@ public class mainScreenController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
     @FXML
-    public void clickProductAdd(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("addProduct.fxml"));
+    public void clickPartModify(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("modifyPart.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
         //stage.setTitle("");
         stage.setScene(scene);
         stage.show();
     }
+
     @FXML
-    public void clickPartModify(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("modifyPart.fxml"));
+    public void clickPartDelete(ActionEvent event) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("partDeleteDialog.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        //stage.setTitle("");
+        stage.setScene(scene);
+
+        //create an instance of the delete dialog controller
+        PartDeleteDialogController dialogController = fxmlLoader.getController();
+
+        //pass the selected part to the delete confirmation dialog box
+        SelectionModel<Part> selectionModel = partTable.getSelectionModel();
+        Part selectedPart = selectionModel.getSelectedItem();
+        dialogController.setPart(selectedPart);
+        dialogController.setPartToBeDeleted();
+
+        //show the delete dialog pop-up
+        stage.show();
+    }
+    @FXML
+    public void clickProductAdd(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("addProduct.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
         //stage.setTitle("");

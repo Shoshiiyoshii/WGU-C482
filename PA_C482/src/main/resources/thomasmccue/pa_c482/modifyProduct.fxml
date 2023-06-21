@@ -5,7 +5,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="modifyProductPane" prefHeight="566.0" prefWidth="984.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="thomasmccue.pa_c482.modifyProductController">
+<AnchorPane fx:id="modifyProductPane" prefHeight="566.0" prefWidth="984.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="thomasmccue.pa_c482.ModifyProductController">
     <children>
       <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#ffffff00" height="542.0" layoutX="9.0" layoutY="13.0" stroke="BLACK" strokeType="INSIDE" width="966.0" />
         <Label layoutX="46.0" layoutY="43.0" text="Modify Product">

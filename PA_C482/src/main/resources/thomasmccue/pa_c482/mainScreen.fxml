@@ -5,7 +5,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="mainScreenPane" prefHeight="466.0" prefWidth="984.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="thomasmccue.pa_c482.mainScreenController">
+<AnchorPane fx:id="mainScreenPane" prefHeight="466.0" prefWidth="984.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="thomasmccue.pa_c482.MainScreenController">
    <children>
       <Label layoutX="46.0" layoutY="43.0" text="Inventory Managment System">
          <font>
@@ -28,7 +28,7 @@
               <buttons>
                 <Button fx:id="partAddButton" mnemonicParsing="false" onAction="#clickPartAdd" text="Add" />
                   <Button fx:id="partModifyButton" layoutX="140.0" layoutY="17.0" mnemonicParsing="false" onAction="#clickPartModify" text="Modify" />
-                  <Button fx:id="partDeleteButton" layoutX="140.0" layoutY="17.0" mnemonicParsing="false" text="Delete" />
+                  <Button fx:id="partDeleteButton" layoutX="140.0" layoutY="17.0" mnemonicParsing="false" onAction="#clickPartDelete" text="Delete" />
               </buttons>
             </ButtonBar>
             <Label layoutX="31.0" layoutY="28.0" text="Parts">

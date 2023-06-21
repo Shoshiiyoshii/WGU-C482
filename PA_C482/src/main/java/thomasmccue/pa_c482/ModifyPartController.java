@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class modifyPartController implements Initializable {
+public class ModifyPartController implements Initializable {
     @FXML
     private RadioButton inHouseRadioButton, outsourcedRadioButton;
     @FXML

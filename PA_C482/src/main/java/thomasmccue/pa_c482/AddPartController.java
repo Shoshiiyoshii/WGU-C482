@@ -8,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,7 +15,7 @@ import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-public class addPartController implements Initializable {
+public class AddPartController implements Initializable {
     @FXML
     private RadioButton inHouseRadioButton, outsourcedRadioButton;
     @FXML
@@ -115,15 +114,17 @@ public class addPartController implements Initializable {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
-    // Implement the necessary methods
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //create a random number to serve as the id for the new part
         Random random = new Random();
         int randomId;
+        //try different random positive numbers less than a million against the id's that already exist in the system
+        //keep trying until it is confirmed that the randomId is not already assigned to either a product or a part
         do{
             randomId = random.nextInt(1000000);
         } while (Inventory.lookupPart(randomId) != null || Inventory.lookupProduct(randomId) != null);
-
+        //populate the ID field with the new ID number
         idField.setText(String.valueOf(randomId));
     }
 

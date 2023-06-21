@@ -81,18 +81,15 @@ public class Inventory {
     public static void updateProduct(int index, Product newProduct) {
     }
 
-    //FIXME do I need >0 clause??
     public static boolean deletePart(Part selectedPart) {
-        if (allParts.size() > 0) {
             boolean deleted = allParts.remove(selectedPart);
             if (deleted) {
                 return true;
             } else {
-                throw new RuntimeException("The selected part could not be deleted");
+                return false;
             }
-        }
-        return false;
     }
+
     //FIXME do I need >0 clause??
     public static boolean deleteProduct(Product selectedProduct) {
         if (allProducts.size() > 0) {
