@@ -11,43 +11,37 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PartDeleteDialogController implements Initializable {
+public class ProductDeleteDialogController implements Initializable {
     @FXML
     private Button deleteButton, cancelButton;
     @FXML
-    private Label confirmationDialog, partToBeDeleted;
+    private Label confirmationDialog, productToBeDeleted;
 
-    private Part part;
+    private Product product;
 
-    //set which part has been selected from the table
-    public void setPart(Part part){
-        this.part = part;
+    public void setProduct(Product product){
+        this.product = product;
     }
 
-    //set the label in the dialog box to show which part has been selected to be deleted
-    public void setPartToBeDeleted() throws IOException{
-        String partName = part.getName();
-        int partId = part.getId();
-        partToBeDeleted.setText("Part Name: " + partName + "    Part ID: " + String.valueOf(partId));
+    public void setProductToBeDeleted() throws IOException{
+        String productName = product.getName();
+        int productId = product.getId();
+        productToBeDeleted.setText("Product Name: " + productName + "    Product ID: " + String.valueOf(productId));
     }
 
-    //when delete button is clicked, attempt to delete the selected part from the inventory
-    //display a confirmation or failure message
     @FXML
     public void onDeleteClicked(ActionEvent event) throws IOException {
-        boolean deleted = Inventory.deletePart(part);
+        boolean deleted = Inventory.deleteProduct(product);
         if(deleted) {
             confirmationDialog.setText("Delete Successful");
             cancelButton.setText("Okay");
             deleteButton.setVisible(false);
         } else{
-            confirmationDialog.setText("The selected part could not be deleted");
+            confirmationDialog.setText("The selected product could not be deleted");
             cancelButton.setText("Okay");
             deleteButton.setVisible(false);
         }
     }
-
-    //when cancel button is clicked, close the dialog window and go back to the main screen
     @FXML
     public void onCancelClicked(ActionEvent event) throws IOException{
         Stage stage = (Stage) cancelButton.getScene().getWindow();

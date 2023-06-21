@@ -54,13 +54,24 @@ public class MainScreenController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("modifyPart.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
-        //stage.setTitle("");
         stage.setScene(scene);
+
+        //create an instance of the modifyPartController
+        ModifyPartController modifyPartController = fxmlLoader.getController();
+
+        //pass the part that has been selected in the table to the modifyPartController to be edited
+        //and auto-fill the text fields in the modify part window with the selected parts data
+        SelectionModel<Part> selectionModel = partTable.getSelectionModel();
+        Part selectedPart = selectionModel.getSelectedItem();
+        modifyPartController.setPart(selectedPart);
+        modifyPartController.fillFields();
+
         stage.show();
     }
 
+
     @FXML
-    public void clickPartDelete(ActionEvent event) throws IOException{
+    public void clickPartDelete(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("partDeleteDialog.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
@@ -95,6 +106,27 @@ public class MainScreenController implements Initializable {
         Stage stage = new Stage();
         //stage.setTitle("");
         stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    public void clickProductDelete(ActionEvent event) throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("productDeleteDialog.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        //stage.setTitle("");
+        stage.setScene(scene);
+
+        //create an instance of the delete dialog controller
+        ProductDeleteDialogController dialogController = fxmlLoader.getController();
+
+        //pass the selected part to the delete confirmation dialog box
+        SelectionModel<Product> selectionModel = productTable.getSelectionModel();
+        Product selectedProduct = selectionModel.getSelectedItem();
+        dialogController.setProduct(selectedProduct);
+        dialogController.setProductToBeDeleted();
+
+        //show the delete dialog pop-up
         stage.show();
     }
 

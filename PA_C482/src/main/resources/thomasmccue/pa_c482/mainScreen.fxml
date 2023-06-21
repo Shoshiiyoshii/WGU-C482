@@ -58,7 +58,7 @@
                <buttons>
                   <Button fx:id="productAddButton" mnemonicParsing="false" onAction="#clickProductAdd" text="Add" />
                   <Button fx:id="productModifyButton" layoutX="140.0" layoutY="17.0" mnemonicParsing="false" onAction="#clickProductModify" text="Modify" />
-                  <Button fx:id="productDeleteButton" layoutX="140.0" layoutY="17.0" mnemonicParsing="false" text="Delete" />
+                  <Button fx:id="productDeleteButton" layoutX="140.0" layoutY="17.0" mnemonicParsing="false" onAction="#clickProductDelete" text="Delete" />
                </buttons>
             </ButtonBar>
          </children>

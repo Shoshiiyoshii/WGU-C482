@@ -60,7 +60,7 @@ public class Inventory {
 
     //searches the allProducts list for any products that contain the argument String productName,
     //and returns a new ObservableList of Products called searchResults.
-    // Essentially the same as lookupPart(String partName) method.
+    //Essentially the same as lookupPart(String partName) method.
     public static ObservableList<Product> lookupProduct(String productName) {
         //create a local ObservableList of Products called search results to add results to so that multiple matches can be returned
         ObservableList<Product> searchResults = FXCollections.observableArrayList();
@@ -90,17 +90,13 @@ public class Inventory {
             }
     }
 
-    //FIXME do I need >0 clause??
     public static boolean deleteProduct(Product selectedProduct) {
-        if (allProducts.size() > 0) {
             boolean deleted = allProducts.remove(selectedProduct);
             if (deleted) {
                 return true;
             } else {
-                throw new RuntimeException("The selected product could not be deleted");
+                return false;
             }
-        }
-        return false;
     }
 
 
