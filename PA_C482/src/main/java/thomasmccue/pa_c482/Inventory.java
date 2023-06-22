@@ -106,12 +106,12 @@ public class Inventory {
     }
 
     public static boolean deleteProduct(Product selectedProduct) {
-        //hold any associated parts for selectedProduct in an ObservableList
+        //Hold any associated parts for selectedProduct in an ObservableList
         ObservableList<Part> associatedParts = selectedProduct.getAllAssociatedParts();
-        //if there are no associated parts for the selected product, attempt delete
+        //If there are no associated parts for the selected product, attempt to delete. "The user should not delete a product that has a part associated with it."
         if (associatedParts.isEmpty()) {
             boolean deleted = allProducts.remove(selectedProduct);
-            //if delete was successful, return true, else return false
+            //If delete was successful, return true, else return false.
             if (deleted) {
                 return true;
                 //associatedParts is not empty, selected product should not be deleted.

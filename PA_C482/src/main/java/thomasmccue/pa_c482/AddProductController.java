@@ -37,6 +37,47 @@ public class AddProductController implements Initializable {
     private Product newProduct;
 
     @FXML
+    public void partSearch(ActionEvent event) throws IOException {
+        // Grab what is typed into the partSearchBar and hold it in a String called "search"
+        String search = searchField.getText();
+        //If an error message was previously displayed in the UI here, clear it.
+        errorMessage.setText("");
+
+        // If the search field is empty, repopulate the table with all available parts
+        if (search.isEmpty()) {
+            associatedPartTable1.setItems(Inventory.getAllParts());
+            // Check if search input is an int or a string so that the proper method can be called
+            // Using regex to see if search input is digits
+        } else if (search.matches("\\d+")) {
+            int idSearched = Integer.parseInt(search);
+            Part found = Inventory.lookupPart(idSearched);
+            //check to see if lookupPart(int) returned a value. If it did, show the matching value in the table view
+            if (found != null) {
+                ObservableList<Part> foundParts = FXCollections.observableArrayList();
+                foundParts.add(found);
+                associatedPartTable1.setItems(foundParts);
+                //if lookupPart(int) returned null, no part was found. Show an explanatory error in the UI
+                //reset the search bar and refill the table view with all parts
+            } else {
+                errorMessage.setText("No part with ID \"" + idSearched + "\" found.");
+                searchField.clear();
+                associatedPartTable1.setItems(Inventory.getAllParts());
+            }
+            //if the search entry isn't a number, then it is a string. Call the appropriate lookUpPart(String) method
+            //and show only the matching parts in the table
+        } else {
+            ObservableList<Part> foundParts = Inventory.lookupPart(search);
+            if (foundParts != null) {
+                associatedPartTable1.setItems(foundParts);
+                //if no parts containing the searched for String are found, show an error message and reset search bar and table view.
+            } else {
+                errorMessage.setText("No part containing \"" + search + "\" found.");
+                searchField.clear();
+                associatedPartTable1.setItems(Inventory.getAllParts());
+            }
+        }
+    }
+    @FXML
     public void saveClicked(ActionEvent event) throws IOException{
         //get user inputs from corresponding text fields and save as Strings
         String name = nameField.getText();
@@ -84,8 +125,11 @@ public class AddProductController implements Initializable {
 
             // Clear the error message
             errorMessage.setText("");
-            //update main screen product table FIXME NEXT
 
+            //add this updated version of the product to inventory
+            Inventory.addProduct(newProduct);
+
+            //close window/redirect to the main screen
             Stage stage = (Stage) saveButton.getScene().getWindow();
             stage.close();
 
@@ -94,7 +138,7 @@ public class AddProductController implements Initializable {
                     "Price must be a number with two decimal points.");
         }
     }
-
+//FIXME can add the same part multiple times ahhhhhhh
     public void addPartClicked(ActionEvent event) throws IOException{
             //get selected part from top part table
             SelectionModel<Part> selectionModel = associatedPartTable1.getSelectionModel();
@@ -113,16 +157,32 @@ public class AddProductController implements Initializable {
         //hold the selected part item
         SelectionModel<Part> selectionModel = associatedPartTable2.getSelectionModel();
         Part partToRemove = selectionModel.getSelectedItem();
-        //attempt to delete the selected part item from associated parts
-        boolean deleted = newProduct.deleteAssociatedPart(partToRemove);
-        //if deleted successfully, refresh table view to reflect current associated parts
-        if(deleted){
-            associatedPartTable2.refresh();
-        //if not deleted successfully, display error message
-        } else {
-            errorMessage.setText("The selected part could not be removed from associated parts.");
+            //if the user has already been prompted to confirm the removal, then remove the part
+            if (errorMessage.getText().equals("Are you sure you want to remove this part? Part ID: " + partToRemove.getId()
+                    +"\nIf yes, click the Remove Associated Part button again.")) {
+                //attempt to delete the selected part item from associated parts
+                boolean deleted = newProduct.deleteAssociatedPart(partToRemove);
+                //if deleted successfully, refresh table view to reflect current associated parts
+                if (deleted) {
+                    associatedPartTable2.refresh();
+                    //if not deleted successfully, display error message
+                } else {
+                    errorMessage.setText("The selected part could not be removed from associated parts.");
+                }
+                // Update the bottom part table
+                associatedPartTable2.setItems(newProduct.getAllAssociatedParts());
+
+                // Clear the error message
+                errorMessage.setText("");
+            //otherwise, prompt the user to click the remove button again.
+            } else {
+                // Prompt the user to confirm the removal
+                errorMessage.setText("Are you sure you want to remove this part? Part ID: " + partToRemove.getId()
+                +"\nIf yes, click the Remove Associated Part button again.");
+            }
         }
-    }
+
+
 
     public void cancelClicked(ActionEvent event) throws IOException {
         Stage stage = (Stage) cancelButton.getScene().getWindow();

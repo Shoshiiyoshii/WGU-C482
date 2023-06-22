@@ -35,7 +35,7 @@
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Label>
-            <Label fx:id="errorMessage" layoutX="84.0" layoutY="20.0" prefHeight="17.0" prefWidth="173.0" textFill="#f20404">
+            <Label fx:id="errorMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="85.0" layoutY="8.0" prefHeight="40.0" prefWidth="173.0" textAlignment="CENTER" textFill="#f20404" wrapText="true">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -58,7 +58,7 @@
                   <TableColumn fx:id="productPriceColumn" prefWidth="129.0" text="Price/Cost per Unit" />
                </columns>
             </TableView>
-            <TextField fx:id="productSearchBar" layoutX="261.0" layoutY="17.0" onAction="#onProductSearch" promptText="Search by Part ID or Name" />
+            <TextField fx:id="productSearchBar" layoutX="261.0" layoutY="17.0" onAction="#productSearch" promptText="Search by Part ID or Name" />
             <ButtonBar layoutX="171.0" layoutY="222.0" prefHeight="40.0" prefWidth="200.0">
                <buttons>
                   <Button fx:id="productAddButton" mnemonicParsing="false" onAction="#clickProductAdd" text="Add" />
@@ -66,6 +66,11 @@
                   <Button fx:id="productDeleteButton" layoutX="140.0" layoutY="17.0" mnemonicParsing="false" onAction="#clickProductDelete" text="Delete" />
                </buttons>
             </ButtonBar>
+            <Label fx:id="errorMessageProducts" alignment="CENTER" contentDisplay="CENTER" layoutX="85.0" layoutY="7.0" prefHeight="40.0" prefWidth="173.0" textAlignment="CENTER" textFill="#f20404" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <Button fx:id="exitButton" layoutX="870.0" layoutY="400.0" mnemonicParsing="false" onAction="#exitClicked" text="Exit" />

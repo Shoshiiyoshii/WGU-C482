@@ -24,7 +24,7 @@ public class MainScreenController implements Initializable {
     @FXML
     private AnchorPane mainScreenPane;
     @FXML
-    private Label errorMessage;
+    private Label errorMessage, errorMessageProducts;
     @FXML
     private TableView<Part> partTable;
     @FXML
@@ -120,7 +120,7 @@ public class MainScreenController implements Initializable {
                 //if lookupPart(int) returned null, no part was found. Show an explanatory error in the UI
                 //reset the search bar and refill the table view with all parts
             } else {
-                errorMessage.setText("No part with ID " + idSearched + " found.");
+                errorMessage.setText("No part with ID \"" + idSearched + "\" found.");
                 partSearchBar.clear();
                 partTable.setItems(Inventory.getAllParts());
             }
@@ -132,7 +132,7 @@ public class MainScreenController implements Initializable {
                 partTable.setItems(foundParts);
                 //if no parts containing the searched for String are found, show an error message and reset search bar and table view.
             } else {
-                errorMessage.setText("No part containing " + search + " found.");
+                errorMessage.setText("No part containing \"" + search + "\" found.");
                 partSearchBar.clear();
                 partTable.setItems(Inventory.getAllParts());
             }
@@ -181,7 +181,45 @@ public class MainScreenController implements Initializable {
     }
 
     @FXML
-    public void onProductSearch(ActionEvent event) {
+    public void productSearch(ActionEvent event) throws IOException{
+        // Grab what is typed into the productSearchBar and hold it in a String called "search"
+        String search = productSearchBar.getText();
+        //If an error message was previously displayed in the UI here, clear it.
+        errorMessageProducts.setText("");
+
+        // If the search field is empty, repopulate the table with all available parts
+        if (search.isEmpty()) {
+            productTable.setItems(Inventory.getAllProducts());
+            // Check if search input is an int or a string so that the proper method can be called
+            // Using regex to see if search input is digits
+        } else if (search.matches("\\d+")) {
+            int idSearched = Integer.parseInt(search);
+            Product found = Inventory.lookupProduct(idSearched);
+            //check to see if lookupProduct(int) returned a value. If it did, show the matching value in the table view
+            if (found != null) {
+                ObservableList<Product> foundProducts = FXCollections.observableArrayList();
+                foundProducts.add(found);
+                productTable.setItems(foundProducts);
+                //if lookupProduct(int) returned null, no product was found. Show an explanatory error in the UI
+                //reset the search bar and refill the table view with all products
+            } else {
+                errorMessageProducts.setText("No product with ID \"" + idSearched + "\" found.");
+                productSearchBar.clear();
+                productTable.setItems(Inventory.getAllProducts());
+            }
+            //if the search entry isn't a number, then it is a string. Call the appropriate lookUpProduct(String) method
+            //and show only the matching products in the table
+        } else {
+            ObservableList<Product> foundProducts = Inventory.lookupProduct(search);
+            if (foundProducts != null) {
+                productTable.setItems(foundProducts);
+                //if no products containing the searched for String are found, show an error message and reset search bar and table view.
+            } else {
+                errorMessageProducts.setText("No products containing \"" + search + "\" found.");
+                productSearchBar.clear();
+                productTable.setItems(Inventory.getAllProducts());
+            }
+        }
     }
 
     @FXML

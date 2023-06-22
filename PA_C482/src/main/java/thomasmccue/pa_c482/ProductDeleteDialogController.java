@@ -37,7 +37,8 @@ public class ProductDeleteDialogController implements Initializable {
             cancelButton.setText("Okay");
             deleteButton.setVisible(false);
         } else{
-            confirmationDialog.setText("The selected product could not be deleted");
+            //"The user should not delete a product that has a part associated with it."
+            confirmationDialog.setText("The selected product could not be deleted. \nPlease remove any associated parts first.");
             cancelButton.setText("Okay");
             deleteButton.setVisible(false);
         }
