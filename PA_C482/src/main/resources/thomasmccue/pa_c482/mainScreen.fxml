@@ -23,7 +23,7 @@
                   <TableColumn fx:id="partPriceColumn" prefWidth="132.0" text="Price/Cost per Unit" />
               </columns>
             </TableView>
-            <TextField fx:id="partSearchBar" layoutX="261.0" layoutY="15.0" onKeyTyped="#partSearch" promptText="Search by Part ID or Name" />
+            <TextField fx:id="partSearchBar" layoutX="261.0" layoutY="15.0" onAction="#partSearch" promptText="Search by Part ID or Name" />
             <ButtonBar layoutX="171.0" layoutY="222.0" prefHeight="40.0" prefWidth="200.0">
               <buttons>
                 <Button fx:id="partAddButton" mnemonicParsing="false" onAction="#clickPartAdd" text="Add" />
@@ -35,6 +35,11 @@
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Label>
+            <Label fx:id="errorMessage" layoutX="84.0" layoutY="20.0" prefHeight="17.0" prefWidth="173.0" textFill="#f20404">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <Pane layoutX="505.0" layoutY="72.0" prefHeight="272.0" prefWidth="430.0">
@@ -49,7 +54,7 @@
                <columns>
                   <TableColumn fx:id="productIdColumn" prefWidth="75.0" text="Product ID" />
                   <TableColumn fx:id="productNameColumn" prefWidth="105.0" text="Product Name" />
-                  <TableColumn fx:id="inventoryLevelColumn" prefWidth="101.0" text="Inventory Level" />
+                  <TableColumn fx:id="productInventoryLevelColumn" prefWidth="101.0" text="Inventory Level" />
                   <TableColumn fx:id="productPriceColumn" prefWidth="129.0" text="Price/Cost per Unit" />
                </columns>
             </TableView>

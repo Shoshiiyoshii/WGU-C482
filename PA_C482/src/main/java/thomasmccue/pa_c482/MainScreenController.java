@@ -1,5 +1,7 @@
 package thomasmccue.pa_c482;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,17 +11,20 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainScreenController implements Initializable {
     @FXML
-    private TextField partSearchBar,productSearchBar;
+    private TextField partSearchBar, productSearchBar;
     @FXML
     private Button partAddButton, partModifyButton, partDeleteButton, productAddButton, productModifyButton, productDeleteButton, exitButton;
     @FXML
     private AnchorPane mainScreenPane;
+    @FXML
+    private Label errorMessage;
     @FXML
     private TableView<Part> partTable;
     @FXML
@@ -44,7 +49,7 @@ public class MainScreenController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("addPart.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
-        //stage.setTitle("");
+        stage.setTitle("Add Part");
         stage.setScene(scene);
         stage.show();
     }
@@ -54,6 +59,7 @@ public class MainScreenController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("modifyPart.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
+        stage.setTitle("Modify Part");
         stage.setScene(scene);
 
         //create an instance of the modifyPartController
@@ -75,7 +81,7 @@ public class MainScreenController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("partDeleteDialog.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
-        //stage.setTitle("");
+        stage.setTitle("Delete Part");
         stage.setScene(scene);
 
         //create an instance of the delete dialog controller
@@ -90,37 +96,81 @@ public class MainScreenController implements Initializable {
         //show the delete dialog pop-up
         stage.show();
     }
+
+    @FXML
+    public void partSearch(ActionEvent event) throws IOException {
+        // Grab what is typed into the partSearchBar and hold it in a String called "search"
+        String search = partSearchBar.getText();
+        //If an error message was previously displayed in the UI here, clear it.
+        errorMessage.setText("");
+
+        // If the search field is empty, repopulate the table with all available parts
+        if (search.isEmpty()) {
+            partTable.setItems(Inventory.getAllParts());
+            // Check if search input is an int or a string so that the proper method can be called
+            // Using regex to see if search input is digits
+        } else if (search.matches("\\d+")) {
+            int idSearched = Integer.parseInt(search);
+            Part found = Inventory.lookupPart(idSearched);
+            //check to see if lookupPart(int) returned a value. If it did, show the matching value in the table view
+            if (found != null) {
+                ObservableList<Part> foundParts = FXCollections.observableArrayList();
+                foundParts.add(found);
+                partTable.setItems(foundParts);
+                //if lookupPart(int) returned null, no part was found. Show an explanatory error in the UI
+                //reset the search bar and refill the table view with all parts
+            } else {
+                errorMessage.setText("No part with ID " + idSearched + " found.");
+                partSearchBar.clear();
+                partTable.setItems(Inventory.getAllParts());
+            }
+            //if the search entry isn't a number, then it is a string. Call the appropriate lookUpPart(String) method
+            //and show only the matching parts in the table
+        } else {
+            ObservableList<Part> foundParts = Inventory.lookupPart(search);
+            if (foundParts != null) {
+                partTable.setItems(foundParts);
+                //if no parts containing the searched for String are found, show an error message and reset search bar and table view.
+            } else {
+                errorMessage.setText("No part containing " + search + " found.");
+                partSearchBar.clear();
+                partTable.setItems(Inventory.getAllParts());
+            }
+        }
+    }
+
     @FXML
     public void clickProductAdd(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("addProduct.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
-        //stage.setTitle("");
+        stage.setTitle("Add Product");
         stage.setScene(scene);
         stage.show();
     }
+
     @FXML
     public void clickProductModify(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("modifyProduct.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
-        //stage.setTitle("");
+        stage.setTitle("Modify Product");
         stage.setScene(scene);
         stage.show();
     }
 
     @FXML
-    public void clickProductDelete(ActionEvent event) throws IOException{
+    public void clickProductDelete(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("productDeleteDialog.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
-        //stage.setTitle("");
+        stage.setTitle("Product Delete");
         stage.setScene(scene);
 
         //create an instance of the delete dialog controller
         ProductDeleteDialogController dialogController = fxmlLoader.getController();
 
-        //pass the selected part to the delete confirmation dialog box
+        //pass the selected product to the delete confirmation dialog box
         SelectionModel<Product> selectionModel = productTable.getSelectionModel();
         Product selectedProduct = selectionModel.getSelectedItem();
         dialogController.setProduct(selectedProduct);
@@ -131,39 +181,30 @@ public class MainScreenController implements Initializable {
     }
 
     @FXML
-    public void exitClicked(ActionEvent event) throws IOException{
+    public void onProductSearch(ActionEvent event) {
+    }
+
+    @FXML
+    public void exitClicked(ActionEvent event) throws IOException {
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
     }
 
-    @FXML
-    public void partSearch(ActionEvent event) throws IOException{
-        //grab what is typed into the partSearchBar and hold it in a String called "search"
-        String search = partSearchBar.getText();
-        //check if search input is an int or a string so that the proper method can be called.
-        //using regex to see in search input is digits
-        if(search.matches("\\d+")){
-            int idSearched = Integer.parseInt(search);
-            Part found = Inventory.lookupPart(idSearched);
-
-        }
-    }
-
-    @FXML
-    public void onProductSearch(ActionEvent event) {
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //populate part table
         partTable.setItems(Inventory.getAllParts());
         partIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         partInventoryLevelColumn.setCellValueFactory(new PropertyValueFactory<>("stock"));
         partNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         partPriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
 
-
-       // productTable.setItems(Inventory.getAllProducts());
+        //populate product table
+        productTable.setItems(Inventory.getAllProducts());
+        productIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        productInventoryLevelColumn.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        productNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        productPriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
-
 }
 

@@ -90,7 +90,7 @@ public class ModifyPartController implements Initializable {
                 return;
             }
             if (price < 0.0) {
-                errorMessage.setText("Please enter a positive number with two decimal point for Price(i.e. 19.00, 100.00, 0.97 etc.");
+                errorMessage.setText("Please enter a positive number with decimal point for Price(i.e. 19.00, 100.00, 0.97 etc.");
                 return;
             }
 
@@ -133,8 +133,8 @@ public class ModifyPartController implements Initializable {
             stage.close();
 
         } catch (NumberFormatException e) {
-            errorMessage.setText("Please enter valid values. Id, Inv, Min, and Max must be positive integers. \n" +
-                    "Price must be a number with two decimal points.");
+            errorMessage.setText("Please enter valid values. Id, Inv, Min, Max and Machine ID must be positive integers. \n" +
+                    "Price must be a number with a decimal point.");
         }
     }
 

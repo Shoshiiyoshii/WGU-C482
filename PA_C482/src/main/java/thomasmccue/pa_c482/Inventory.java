@@ -5,8 +5,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
 public class Inventory {
-    private static ObservableList<Part> allParts = FXCollections.observableArrayList();;
-    private static ObservableList<Product> allProducts = FXCollections.observableArrayList();;
+    private static ObservableList<Part> allParts = FXCollections.observableArrayList();
+    ;
+    private static ObservableList<Product> allProducts = FXCollections.observableArrayList();
+    ;
 
     //uses the .add() function of ObservableList to add newPart to allParts
     public static void addPart(Part newPart) {
@@ -31,7 +33,7 @@ public class Inventory {
     }
 
     //uses a productId passed as an argument to find that specific product in the allProducts ObservableList
-    //works the same as lookupPart method
+    //works the same as lookupPart(int) method
     public static Product lookupProduct(int productId) {
         //iterate through every Product object in the allProduct ObservableList until the product id matches
         for (Product product : allProducts) {
@@ -55,7 +57,12 @@ public class Inventory {
                 searchResults.add(part);
             }
         }
-        return searchResults;
+        //if there is anything in the search results list, return the list, otherwise return null
+        if (searchResults.isEmpty()) {
+            return null;
+        } else {
+            return searchResults;
+        }
     }
 
     //searches the allProducts list for any products that contain the argument String productName,
@@ -71,40 +78,54 @@ public class Inventory {
                 searchResults.add(product);
             }
         }
-        return searchResults;
+        //if there is anything in the search results list, return the list, otherwise return null
+        if (searchResults.isEmpty()) {
+            return null;
+        } else {
+            return searchResults;
+        }
     }
 
     public static void updatePart(int index, Part selectedPart) {
-
+        //use .set() method of ObservableList to replace the part that was at index with the updated version
+        allParts.set(index, selectedPart);
     }
 
     public static void updateProduct(int index, Product newProduct) {
+        //use .set() method of ObservableList to replace the product that was at index with the updated version
+        allProducts.set(index, newProduct);
     }
 
     public static boolean deletePart(Part selectedPart) {
-            boolean deleted = allParts.remove(selectedPart);
-            if (deleted) {
-                return true;
-            } else {
-                return false;
-            }
+        boolean deleted = allParts.remove(selectedPart);
+        if (deleted) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public static boolean deleteProduct(Product selectedProduct) {
+        //hold any associated parts for selectedProduct in an ObservableList
+        ObservableList<Part> associatedParts = selectedProduct.getAllAssociatedParts();
+        //if there are no associated parts for the selected product, attempt delete
+        if (associatedParts.isEmpty()) {
             boolean deleted = allProducts.remove(selectedProduct);
+            //if delete was successful, return true, else return false
             if (deleted) {
                 return true;
-            } else {
-                return false;
+                //associatedParts is not empty, selected product should not be deleted.
             }
+        }
+        return false;
     }
 
 
-    public static  ObservableList<Part> getAllParts(){
+    public static ObservableList<Part> getAllParts() {
         return allParts;
     }
 
-    public static ObservableList<Product> getAllProducts(){
+    public static ObservableList<Product> getAllProducts() {
         return allProducts;
     }
 

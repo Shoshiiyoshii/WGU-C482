@@ -108,12 +108,12 @@ public class AddPartController implements Initializable {
         }
     }
 
-
     @FXML
     public void cancelClicked(ActionEvent event) throws IOException {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //create a random number to serve as the id for the new part

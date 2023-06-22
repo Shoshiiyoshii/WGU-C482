@@ -6,13 +6,35 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+/*FUTURE ENHANCEMENT: In the future the Inventory.lookupPart(int) methods could be improved by making partial ID's searchable. The method could look something like this.
+
+    public static ObservableList<Part> lookupPart(int searched) {
+        ObservableList<Part> searchResults = FXCollections.observableArrayList();
+
+        //iterate through every Part object in the allParts ObservableList
+        for (Part part : allParts) {
+            //check for partial ID matches as well as perfect match
+            String partialId = String.valueOf(searched);
+            String foundId = String.valueOf(part.getId());
+            if (part.getId() == searched || foundId.contains(partialId)) {
+                searchResults.add(part);
+            }
+        }
+       if (searchResults.isEmpty()) {
+            return null;
+        } else {
+            return searchResults;
+        }
+    }
+
+and the Inventory.lookupProduct(int) method would be very similar. If a user can search a partial name, they should also  be able to search a partial ID.*/
 
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("mainScreen.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        //stage.setTitle("");
+        stage.setTitle("Main Screen");
         stage.setScene(scene);
         stage.show();
     }
