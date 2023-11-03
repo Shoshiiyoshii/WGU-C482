@@ -1,28 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="1537355c-3076-4766-8e87-956917c6a498" name="Changes" comment="changes">
-      <change afterPath="$PROJECT_DIR$/.idea/WGU-C482.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HelloFX/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SceneBuilderPractice/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SceneBuilderPractice/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SceneBuilderPractice/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SceneBuilderPractice/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SceneBuilderPractice/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SceneBuilderPractice/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SceneBuilderPractice/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SceneBuilderPractice/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SceneBuilderPractice/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SceneBuilderPractice/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SceneBuilderPractice/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SceneBuilderPractice/src/main/java/module-info.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SceneBuilderPractice/src/main/java/thomasmccue/scenebuilderpractice/Controller/Controller.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SceneBuilderPractice/src/main/java/thomasmccue/scenebuilderpractice/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SceneBuilderPractice/src/main/resources/thomasmccue/scenebuilderpractice/View/Main.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PA_C482/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/PA_C482/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PA_C482/src/main/java/thomasmccue/pa_c482/AddPartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/PA_C482/src/main/java/thomasmccue/pa_c482/AddPartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PA_C482/src/main/java/thomasmccue/pa_c482/AddProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/PA_C482/src/main/java/thomasmccue/pa_c482/AddProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PA_C482/src/main/java/thomasmccue/pa_c482/InHouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/PA_C482/src/main/java/thomasmccue/pa_c482/InHouse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PA_C482/src/main/java/thomasmccue/pa_c482/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/PA_C482/src/main/java/thomasmccue/pa_c482/Inventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PA_C482/src/main/java/thomasmccue/pa_c482/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/PA_C482/src/main/java/thomasmccue/pa_c482/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PA_C482/src/main/java/thomasmccue/pa_c482/MainScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/PA_C482/src/main/java/thomasmccue/pa_c482/MainScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PA_C482/src/main/java/thomasmccue/pa_c482/ModifyPartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/PA_C482/src/main/java/thomasmccue/pa_c482/ModifyPartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PA_C482/src/main/java/thomasmccue/pa_c482/ModifyProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/PA_C482/src/main/java/thomasmccue/pa_c482/ModifyProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PA_C482/src/main/java/thomasmccue/pa_c482/Outsourced.java" beforeDir="false" afterPath="$PROJECT_DIR$/PA_C482/src/main/java/thomasmccue/pa_c482/Outsourced.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PA_C482/src/main/java/thomasmccue/pa_c482/PartDeleteDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/PA_C482/src/main/java/thomasmccue/pa_c482/PartDeleteDialogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PA_C482/src/main/java/thomasmccue/pa_c482/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/PA_C482/src/main/java/thomasmccue/pa_c482/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PA_C482/src/main/java/thomasmccue/pa_c482/ProductDeleteDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/PA_C482/src/main/java/thomasmccue/pa_c482/ProductDeleteDialogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PA_C482/src/main/resources/thomasmccue/pa_c482/mainScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/PA_C482/src/main/resources/thomasmccue/pa_c482/mainScreen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PA_C482/src/main/resources/thomasmccue/pa_c482/modifyProduct.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/PA_C482/src/main/resources/thomasmccue/pa_c482/modifyProduct.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,12 +38,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/shoshannathomas-mccue/Development/WGU-C482&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/Users/shoshannathomas-mccue/Desktop/Development/WGU-C482"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
